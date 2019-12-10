@@ -25,14 +25,13 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING
       },
-      password: {
+      password_hash: {
         allowNull: false,
         type: Sequelize.STRING
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        type: Sequelize.DATE
       },
       updated_at: {
         allowNull: false,
