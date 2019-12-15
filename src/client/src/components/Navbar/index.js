@@ -3,23 +3,14 @@ import StyledNav from "./style";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [userInfo, setUserInfo] = useState(null);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api")
-      .then(d => d.json())
-      .then(r => setUserInfo(r));
-  }, []);
   return (
     <StyledNav className="main-navbar">
       <div className="logo">
-        <Link to="/">Contador de Caloria</Link>
+        <Link to="/">Calorie</Link>
       </div>
       <ul className="navbar-list">
-        {userInfo ? (
-          <li className="username-greeting">
-            Olá {userInfo.name} {userInfo.surname}
-          </li>
+        {false ? (
+          <li className="username-greeting">Olá username</li>
         ) : (
           <>
             <li>
