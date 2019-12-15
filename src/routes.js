@@ -1,15 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const HomeController = require("./app/controllers/HomeController.js");
-const AuthController = require("./app/controllers/AuthController.js");
+const ApiRoutes = require("./apiRoutes.js");
 
-// HOME CONTROLLER
-router.get("/", HomeController.index);
+//API ROUTES
+router.get("/api", ApiRoutes);
 
-// AUTH CONTROLLER
-router.get("/register", AuthController.register);
-router.post("/register", AuthController.create);
-router.get("/login", AuthController.login);
-router.post("/login", AuthController.signup);
+// SEND REACT APP
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build"));
+});
 
 module.exports = router;

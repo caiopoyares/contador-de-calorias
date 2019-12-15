@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const path = require("path");
+const morgan = require("morgan");
 
 class App {
   constructor() {
@@ -16,12 +17,15 @@ class App {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(helmet());
+    this.express.use(morgan("tiny"));
   }
 
   views() {
     this.express.set("view engine", "ejs");
     this.express.set("views", path.resolve(__dirname, "app", "views"));
-    this.express.use(express.static(path.resolve(__dirname, "public")));
+    this.express.use(
+      express.static(path.resolve(__dirname, "client", "build"))
+    );
   }
 
   routes() {
