@@ -3,7 +3,9 @@ const router = express.Router();
 const ApiRoutes = require("./apiRoutes.js");
 
 //API ROUTES
-router.get("/api", ApiRoutes);
+router.get("/api", (req, res) =>
+  res.json({ name: "Caio", surname: "Poyares" })
+);
 
 // SEND REACT APP
 router.get("/", (req, res) => {

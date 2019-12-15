@@ -3,6 +3,9 @@ const router = express.Router();
 
 const AuthController = require("./app/controllers/AuthController.js");
 
+// HOME CONTROLLER
+
+//AUTH CONTROLLERS
 router.get("/register", AuthController.register);
 router.post("/register", AuthController.create);
 router.get("/login", AuthController.login);
