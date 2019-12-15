@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import StyledNav from "./style";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -12,18 +13,23 @@ const Navbar = () => {
   return (
     <StyledNav className="main-navbar">
       <div className="logo">
-        <a href="/">Contador de Caloria</a>
+        <Link to="/">Contador de Caloria</Link>
       </div>
       <ul className="navbar-list">
-        <li className="username-greeting">
-          Olá, {userInfo ? `${userInfo.name} ${userInfo.surname}` : "Anonymous"}
-        </li>
-        <li>
-          <a href="/login">Entrar</a>
-        </li>
-        <li>
-          <a href="/register">Login</a>
-        </li>
+        {userInfo ? (
+          <li className="username-greeting">
+            Olá {userInfo.name} {userInfo.surname}
+          </li>
+        ) : (
+          <>
+            <li>
+              <Link to="/login">Entrar</Link>
+            </li>
+            <li>
+              <Link to="/register">Cadastrar-se</Link>
+            </li>
+          </>
+        )}
       </ul>
     </StyledNav>
   );

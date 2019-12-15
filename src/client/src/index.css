@@ -16,3 +16,9 @@ body {
   margin: 0;
   box-sizing: inherit;
 }
+
+ul,
+li {
+  text-decoration: none;
+  list-style: none;
+}
