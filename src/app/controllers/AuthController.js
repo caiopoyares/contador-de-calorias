@@ -2,8 +2,14 @@ const { User } = require("../models/");
 
 class AuthController {
   async create(req, res) {
-    await User.create(req.body);
-    res.send("User successfully created");
+    const { name: username, email, password } = req.body;
+    console.log(req.body.email);
+    if (username && email && password) {
+      await User.create({ username, email, password });
+      res.send("User successfully created");
+    } else {
+      res.send("Invalid user");
+    }
   }
 
   async signup(req, res) {
