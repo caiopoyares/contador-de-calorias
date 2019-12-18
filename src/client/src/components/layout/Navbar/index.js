@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import StyledNav from "./style";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const handleTest = () => {
-    fetch("http://localhost:3001/api/test").then(res => console.log(res));
+  const username = localStorage.getItem("username");
+
+  const handleLogout = e => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
   };
+
   return (
     <StyledNav className="main-navbar">
       <div className="logo">
         <Link to="/">Calorie</Link>
       </div>
       <ul className="navbar-list">
-        {false ? (
-          <li className="username-greeting">Olá username</li>
+        {username ? (
+          <>
+            <li className="username-greeting">Olá {username}</li>
+            <li onClick={handleLogout}>Logout</li>
+          </>
         ) : (
           <>
             <li>
@@ -21,9 +28,6 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/register">Cadastrar-se</Link>
-            </li>
-            <li>
-              <button onClick={handleTest}>Teste</button>
             </li>
           </>
         )}

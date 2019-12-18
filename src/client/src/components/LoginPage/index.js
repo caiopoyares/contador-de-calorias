@@ -18,9 +18,13 @@ const LoginForm = () => {
           password: Password
         })
         .then(res => {
-          if (res.data.allowed === true) {
-            document.cookie = `name=caio`;
-            history.push("/dashboard");
+          const { username, email, allowed } = res.data;
+          if (allowed === true) {
+            if (username && email) {
+              localStorage.setItem("username", username);
+              localStorage.setItem("email", email);
+              history.push("/dashboard");
+            }
           } else {
             setEmail("");
             setPassword("");

@@ -17,8 +17,8 @@ class AuthController {
     const user = await User.findOne({ where: { email } });
     if (user) {
       const allowed = await user.checkPassword(password);
-      res.cookie("email", "caiopoyares@gmail.com");
-      res.json({ allowed });
+      console.log(user.username, user.email);
+      res.json({ allowed, username: user.username, email: user.email });
     } else {
       res.json({ allowed: false });
     }

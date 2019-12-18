@@ -23,6 +23,7 @@ export default styled.nav`
   }
   .navbar-list {
     display: flex;
+    color: white;
     li {
       padding: 1rem 0.5rem;
       a {
