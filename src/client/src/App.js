@@ -1,9 +1,11 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Homepage from "./components/Homepage";
-import RegisterForm from "./components/RegisterForm/index.js";
+import RegisterPage from "./components/RegisterPage/index.js";
+import LoginPage from "./components/LoginPage/index";
+import Dashboard from "./components/Dashboard/";
 
 function App() {
   return (
@@ -14,8 +16,14 @@ function App() {
           <Route path="/" exact>
             <Homepage />
           </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
           <Route path="/register">
-            <RegisterForm />
+            <RegisterPage />
           </Route>
         </Switch>
       </Router>

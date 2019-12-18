@@ -3,6 +3,9 @@ import StyledNav from "./style";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const handleTest = () => {
+    fetch("http://localhost:3001/api/test").then(res => console.log(res));
+  };
   return (
     <StyledNav className="main-navbar">
       <div className="logo">
@@ -18,6 +21,9 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/register">Cadastrar-se</Link>
+            </li>
+            <li>
+              <button onClick={handleTest}>Teste</button>
             </li>
           </>
         )}

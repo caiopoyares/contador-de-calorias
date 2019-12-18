@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import StyledForm from "./style";
+import StyledForm from "../layout/Form/style";
 import StyledInput from "../layout/Input/style";
 
 const RegisterForm = () => {
@@ -20,7 +20,7 @@ const RegisterForm = () => {
       body: JSON.stringify({ name, email, password })
     });
 
-    history.push("/");
+    history.push("/login");
   };
 
   return (

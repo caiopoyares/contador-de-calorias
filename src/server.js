@@ -3,6 +3,8 @@ const helmet = require("helmet");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 class App {
   constructor() {
@@ -20,6 +22,14 @@ class App {
     this.express.use(express.urlencoded({ extended: false }));
     this.express.use(helmet());
     this.express.use(morgan("tiny"));
+    this.express.use(cookieParser());
+    this.express.use(
+      session({
+        secret: "343ji43j4n3jn4jk3n",
+        resave: false,
+        saveUninitialized: true
+      })
+    );
   }
 
   views() {
