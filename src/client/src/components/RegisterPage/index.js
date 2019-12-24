@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import StyledForm from "../layout/Form/style";
-import StyledInput from "../layout/Input/style";
+import { StyledInput, StyledLink } from "../layout/Input/style";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
@@ -53,7 +53,8 @@ const RegisterForm = () => {
             />
           </div>
         </div>
-        <StyledInput type="submit" value="Enviar" />
+        <StyledInput type="submit" value="Criar conta" />
+        <StyledLink to="/login">Fazer login</StyledLink>
       </StyledForm>
     </div>
   );

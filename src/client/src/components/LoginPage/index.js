@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import StyledForm from "../layout/Form/style";
-import StyledInput from "../layout/Input/style";
+import { StyledInput, StyledLink } from "../layout/Input/style";
 import axios from "axios";
 
 const LoginForm = () => {
@@ -18,11 +18,10 @@ const LoginForm = () => {
           password: Password
         })
         .then(res => {
-          const { username, email, allowed } = res.data;
-          if (allowed === true) {
+          const { username, email, token } = res.data;
+          if (username && email) {
             if (username && email) {
-              localStorage.setItem("username", username);
-              localStorage.setItem("email", email);
+              localStorage.setItem("token", token);
               history.push("/dashboard");
             }
           } else {
@@ -61,7 +60,8 @@ const LoginForm = () => {
             />
           </div>
         </div>
-        <StyledInput type="submit" value="Enviar" />
+        <StyledInput type="submit" value="Entrar" />
+        <StyledLink to="/register">Cadastrar-se</StyledLink>
       </StyledForm>
     </div>
   );

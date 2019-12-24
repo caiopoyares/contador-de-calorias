@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export default styled.div`
   margin: 2rem auto 0;
+  text-align: center;
   max-width: 600px;
 
   a.home-button {
