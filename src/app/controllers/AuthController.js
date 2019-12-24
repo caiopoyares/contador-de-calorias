@@ -15,17 +15,15 @@ class AuthController {
   async signup(req, res) {
     const { email, password } = req.body;
     const user = await User.findOne({ where: { email } });
-    if (user) {
-      const allowed = await user.checkPassword(password);
-      console.log(user.username, user.email);
-      res.json({ allowed, username: user.username, email: user.email });
-    } else {
+    if (!user) {
       res.json({ allowed: false });
     }
-  }
 
-  getName(req, res) {
-    console.log(req.cookies.name);
+    if (await user.checkPassword(password)) {
+      const { username, email } = user;
+      const token = user.generateToken(user.user_id);
+      res.json({ username, email, token });
+    }
   }
 }
 

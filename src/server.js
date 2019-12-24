@@ -1,9 +1,10 @@
+require("dotenv").config();
+
 const express = require("express");
 const helmet = require("helmet");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
-const session = require("express-session");
 const cookieParser = require("cookie-parser");
 
 class App {
@@ -23,18 +24,9 @@ class App {
     this.express.use(helmet());
     this.express.use(morgan("tiny"));
     this.express.use(cookieParser());
-    this.express.use(
-      session({
-        secret: "343ji43j4n3jn4jk3n",
-        resave: false,
-        saveUninitialized: true
-      })
-    );
   }
 
   views() {
-    this.express.set("view engine", "ejs");
-    this.express.set("views", path.resolve(__dirname, "app", "views"));
     this.express.use(
       express.static(path.resolve(__dirname, "client", "build"))
     );

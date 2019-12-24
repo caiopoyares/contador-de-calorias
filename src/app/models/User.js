@@ -1,4 +1,6 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const authConfig = require("../../config/auth");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -30,8 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  User.associate = function(models) {
-    // associations can be defined here
+  User.prototype.generateToken = function(id) {
+    return jwt.sign({ id }, authConfig.secret, {
+      expiresIn: authConfig.ttl
+    });
   };
+
   return User;
 };
