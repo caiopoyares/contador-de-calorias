@@ -20,10 +20,8 @@ const LoginForm = () => {
         .then(res => {
           const { username, email, token } = res.data;
           if (username && email) {
-            if (username && email) {
-              localStorage.setItem("token", token);
-              history.push("/dashboard");
-            }
+            localStorage.setItem("token", token);
+            history.push("/dashboard");
           } else {
             setEmail("");
             setPassword("");

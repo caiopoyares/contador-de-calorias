@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/layout/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/routes/PrivateRoute";
 
 import Homepage from "./components/Homepage";
 import RegisterPage from "./components/RegisterPage/index.js";
@@ -16,9 +17,7 @@ function App() {
           <Route path="/" exact>
             <Homepage />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
+          <PrivateRoute path="/dashboard" component={Dashboard} exact />
           <Route path="/login">
             <LoginPage />
           </Route>

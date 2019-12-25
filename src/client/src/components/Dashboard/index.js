@@ -1,10 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Dashboard = () => {
-  useEffect(() => {
-    console.log("USER INFO:" + document.cookie);
-  }, []);
-
   return (
     <div>
       <h1>I am the dashboard</h1>
