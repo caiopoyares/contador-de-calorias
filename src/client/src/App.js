@@ -1,8 +1,12 @@
 import React from "react";
 import Navbar from "./components/layout/Navbar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PrivateRoute from "./components/routes/PrivateRoute";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
+// ROUTES COMPONENT
+import PrivateRoute from "./components/routes/PrivateRoute";
+import PublicRoute from "./components/routes/PublicRoute";
+
+// PAGES COMPONENT
 import Homepage from "./components/Homepage";
 import RegisterPage from "./components/RegisterPage/index.js";
 import LoginPage from "./components/LoginPage/index";
@@ -14,16 +18,20 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
+          <PublicRoute path="/" restricted={true} component={Homepage} exact />
           <PrivateRoute path="/dashboard" component={Dashboard} exact />
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/register">
-            <RegisterPage />
-          </Route>
+          <PublicRoute
+            path="/login"
+            restricted={true}
+            component={LoginPage}
+            exact
+          />
+          <PublicRoute
+            path="/register"
+            restricted={true}
+            component={RegisterPage}
+            exact
+          />
         </Switch>
       </Router>
     </div>
