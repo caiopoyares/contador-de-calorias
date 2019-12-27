@@ -10,6 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     async function authorize() {
       const authenticated = await isLogin();
+      console.log("the value is", authenticated);
       setLogged(authenticated);
       setLoading(false);
     }

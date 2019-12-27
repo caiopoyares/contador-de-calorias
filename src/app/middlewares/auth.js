@@ -9,7 +9,9 @@ module.exports = (req, res, next) => {
   const [, token] = authHeader.split(" ");
 
   jwt.verify(token, authConfig.secret, function(err, decoded) {
-    if (err) res.json({ error: "Invalid Token" });
+    if (err) {
+      return res.json({ error: "Invalid Token" });
+    }
     req.userId = decoded.id;
   });
 
