@@ -25,6 +25,12 @@ class AuthController {
       res.json({ username, email, token });
     }
   }
+
+  async isAuthenticated(req, res) {
+    if (req.userId) return res.json({ authenticated: true });
+
+    return res.json({ error: "user not authenticated. Invalid token." });
+  }
 }
 
 module.exports = new AuthController();
