@@ -2,21 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { isLogin } from "../../../utils";
 import Loading from "react-loading";
+import ThemeContext from "../../../ThemeContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [logged, setLogged] = useState("");
-  const [loading, setLoading] = useState(true);
+  const user = React.useContext(ThemeContext);
 
-  useEffect(() => {
-    async function authorize() {
-      const authenticated = await isLogin();
-      setLogged(authenticated);
-      setLoading(false);
-    }
-    authorize();
-  }, []);
-
-  return loading ? (
+  return false ? (
     <Loading
       type={"spin"}
       color={"#000"}
@@ -30,7 +21,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        logged ? <Component {...props} /> : <Redirect to="/login" />
+        true ? <Component {...props} /> : <Redirect to="/login" />
       }
     />
   );

@@ -27,7 +27,13 @@ class AuthController {
   }
 
   async isAuthenticated(req, res) {
-    if (req.userId) return res.json({ authenticated: true });
+    if (req.userId) {
+      const user = await User.findAll({
+        limit: 1,
+        where: { user_id: req.userId }
+      });
+      return res.json(user);
+    }
 
     return res.json({ error: "user not authenticated. Invalid token." });
   }

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import StyledForm from "../layout/Form/style";
 import { StyledInput, StyledLink } from "../layout/Input/style";
+import ThemeContext from "../../ThemeContext";
 
 const RegisterForm = () => {
   const [name, setName] = useState("");
