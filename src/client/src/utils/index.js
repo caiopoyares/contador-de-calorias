@@ -1,22 +1,19 @@
-import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const isLogin = async () => {
   const token = localStorage.getItem("token");
   console.log("The token is ", token);
   if (!token) return false;
 
-  // WIP - Check on the server if the token is a valid one.
-  const isAuthenticated = await axios.get(
-    `${process.env.REACT_APP_BASE_URL}/api/validate`,
-    {
-      headers: { Authorization: `Bearer ${token}` }
+  try {
+    const decoded = jwt_decode(token);
+    console.log("decoded jwt is ", decoded);
+
+    if (decoded.exp < new Date().getTime() / 1000) {
+      console.log("expired token");
+      return false;
     }
-  );
-
-  if (!isAuthenticated.data.authenticated) {
-    console.log("is authenticated data from api is ", isAuthenticated.data);
-
-    localStorage.removeItem("token");
+  } catch (err) {
     return false;
   }
 
